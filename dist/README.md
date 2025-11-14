@@ -20,6 +20,7 @@ zawartość modułu.
 2. Przejdź do sekcji **Moduły > Menedżer modułów**.
 3. Kliknij **Prześlij moduł** i wskaż wygenerowany plik `billingpriority.zip`.
 4. Po wgraniu potwierdź instalację modułu.
+codex/add-checkout-module-for-address-order-u5ub15
 
 ## Jak awaryjnie wyłączyć moduł
 
@@ -38,3 +39,5 @@ UPDATE ps_module_shop SET active = 0 WHERE id_module IN (SELECT id_module FROM p
 Pamiętaj, aby w razie potrzeby dostosować prefiks `ps_` do faktycznie używanego w instalacji.
 
 Po usunięciu błędu możesz przywrócić pierwotną nazwę katalogu i ponownie włączyć moduł w panelu.
+=======
+ 8.1.x
