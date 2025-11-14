@@ -20,3 +20,24 @@ zawartość modułu.
 2. Przejdź do sekcji **Moduły > Menedżer modułów**.
 3. Kliknij **Prześlij moduł** i wskaż wygenerowany plik `billingpriority.zip`.
 4. Po wgraniu potwierdź instalację modułu.
+codex/add-checkout-module-for-address-order-u5ub15
+
+## Jak awaryjnie wyłączyć moduł
+
+Jeżeli po instalacji modułu wystąpi błąd uniemożliwiający wejście do panelu administracyjnego:
+
+1. Połącz się z serwerem przez FTP/SSH.
+2. Zmień nazwę katalogu modułu, np. z `modules/billingpriority` na `modules/billingpriority_disabled`.
+   PrestaShop automatycznie przestanie ładować moduł po takiej zmianie nazwy.
+3. (Opcjonalnie) jeżeli chcesz dodatkowo oznaczyć moduł jako wyłączony w bazie danych, wykonaj zapytania:
+
+```sql
+UPDATE ps_module SET active = 0 WHERE name = 'billingpriority';
+UPDATE ps_module_shop SET active = 0 WHERE id_module IN (SELECT id_module FROM ps_module WHERE name = 'billingpriority');
+```
+
+Pamiętaj, aby w razie potrzeby dostosować prefiks `ps_` do faktycznie używanego w instalacji.
+
+Po usunięciu błędu możesz przywrócić pierwotną nazwę katalogu i ponownie włączyć moduł w panelu.
+=======
+ 8.1.x
