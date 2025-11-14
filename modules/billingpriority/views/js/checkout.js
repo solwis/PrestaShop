@@ -67,11 +67,9 @@
       return;
     }
 
-    if (companyGroup.previousElementSibling === vatGroup) {
-      return;
+    if (vatGroup.compareDocumentPosition(companyGroup) & Node.DOCUMENT_POSITION_FOLLOWING) {
+      companyGroup.parentElement.insertBefore(vatGroup, companyGroup);
     }
-
-    companyGroup.parentElement.insertBefore(vatGroup, companyGroup);
   }
 
   function reorderVatFields() {
@@ -81,10 +79,6 @@
 
   function updateTextContent(element, text) {
     if (!element || !text) {
-      return;
-    }
-
-    if (element.textContent === text) {
       return;
     }
 
@@ -111,22 +105,10 @@
     updateTextContent(deliveryHeading, translations.deliveryHeading);
   }
 
-  let isApplying = false;
-
   function applyCustomizations() {
-    if (isApplying) {
-      return;
-    }
-
-    isApplying = true;
-
-    try {
-      reorderAddressBlocks();
-      reorderVatFields();
-      updateLabels();
-    } finally {
-      isApplying = false;
-    }
+    reorderAddressBlocks();
+    reorderVatFields();
+    updateLabels();
   }
 
   onReady(() => {
@@ -135,19 +117,18 @@
       return;
     }
 
+    applyCustomizations();
+
     const step = document.querySelector('#checkout-addresses-step');
     if (!step) {
       return;
     }
 
-    applyCustomizations();
-
-    const observerOptions = {childList: true, subtree: true};
     const observer = new MutationObserver(() => {
       applyCustomizations();
     });
 
-    observer.observe(step, observerOptions);
+    observer.observe(step, {childList: true, subtree: true});
 
     if (window.prestashop && typeof window.prestashop.on === 'function') {
       window.prestashop.on('updatedAddressForm', applyCustomizations);
