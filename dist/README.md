@@ -21,6 +21,7 @@ zawartość modułu.
 3. Kliknij **Prześlij moduł** i wskaż wygenerowany plik `billingpriority.zip`.
 4. Po wgraniu potwierdź instalację modułu.
 
+
 ## Jak awaryjnie wyłączyć moduł
 
 Jeżeli po instalacji modułu wystąpi błąd uniemożliwiający wejście do panelu administracyjnego:
@@ -38,3 +39,4 @@ UPDATE ps_module_shop SET active = 0 WHERE id_module IN (SELECT id_module FROM p
 Pamiętaj, aby w razie potrzeby dostosować prefiks `ps_` do faktycznie używanego w instalacji.
 
 Po usunięciu błędu możesz przywrócić pierwotną nazwę katalogu i ponownie włączyć moduł w panelu.
+

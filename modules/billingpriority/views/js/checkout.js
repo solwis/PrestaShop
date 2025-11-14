@@ -67,10 +67,6 @@
       return;
     }
 
-    if (companyGroup.previousElementSibling === vatGroup) {
-      return;
-    }
-
     if (vatGroup.compareDocumentPosition(companyGroup) & Node.DOCUMENT_POSITION_FOLLOWING) {
       companyGroup.parentElement.insertBefore(vatGroup, companyGroup);
     }
