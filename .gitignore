@@ -147,6 +147,7 @@ app/config/config.php
 # Themes, modules and overrides
 
 modules/*
+!modules/billingpriority/
 override/*
 themes/*/
 themes/classic
@@ -210,6 +211,7 @@ themes/default-bootstrap/modules/*/mails/*
 # Release creation
 tools/build/releases/*
 !tools/build/releases/.gitkeep
+dist/*.zip
 
 # Docker configuration
 install.lock
